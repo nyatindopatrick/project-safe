@@ -1,15 +1,20 @@
+const dotenv = require('dotenv');
+dotenv.config();
+const logger = require('morgan');
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use( express.static( "public" ) );
+// app.use( express.static( "uploads" ) );
+app.use(logger('dev'))
 // Passport Config
 require('./config/passport')(passport);
 
@@ -17,6 +22,7 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
+mongoose.set('useCreateIndex', true)
 mongoose
   .connect(
     db,
@@ -30,7 +36,13 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 // Express body parser
-app.use(express.urlencoded({ extended: true }));
+
+
+// initialize body-parser to parse incoming parameters requests to req.body
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// initialize cookie-parser to allow us access the cookies stored in the browser. 
+app.use(cookieParser());
 
 // Express session
 app.use(

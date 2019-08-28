@@ -46,9 +46,9 @@ const SaccoSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  membership: Number,
+  membership: String,
   date_founded: {
-    type: Date,
+    type: String,
     required: true,
   },
 
@@ -57,8 +57,8 @@ const SaccoSchema = new mongoose.Schema({
     type: String,
   },
   created: {
-    type: Date,
-    default: new Date(),
+    type: String,
+    required: true
   },
   saccoLeaderFname: {
     type: String,
@@ -85,7 +85,7 @@ const SaccoSchema = new mongoose.Schema({
   
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   }
 });
 

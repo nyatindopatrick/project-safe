@@ -3,46 +3,28 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Load User model
-const {User, Sacco} = require('../models/User');
+const {User, Sacco} = require('../models/user');
 
 module.exports = function(passport) {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      if (email==="nyatindopatrick@gmail.com"){
-        User.findOne({
-          email: email
-        }).then(user => {
-          // Match password
-          bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) throw err;
-            if (isMatch) {
-              return done(null, user);
-            } else {
-              return done(null, false, { message: 'Password incorrect' });
-            }
-          });
-        });
-      }
-      else {
-        Sacco.findOne({
-          email: email
-        }).then(sacco => {
-          if (!sacco) {
-            return done(null, false, { message: 'That email is not registered' });
-          }
-  
-          // Match password
-          bcrypt.compare(password, sacco.password, (err, isMatch) => {
-            if (err) throw err;
-            if (isMatch) {
-              return done(null, sacco);
-            } else {
-              return done(null, false, { message: 'Password incorrect' });
-            }
-          });
-        });
-      }
+      User.findOne({
+        email: email
+      }).then(user => {
+        if (!user) {
+          return done(null, false, { message: 'That email is not registered' });
+        }
 
+        // Match password
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) throw err;
+          if (isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: 'Password incorrect' });
+          }
+        });
+      });
     })
   );
 
