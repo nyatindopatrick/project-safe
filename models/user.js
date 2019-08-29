@@ -30,7 +30,7 @@ const SaccoSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-   
+
   },
   postal_code: {
     type: Number,
@@ -79,10 +79,10 @@ const SaccoSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true ,
+    unique: true,
   },
   password: { type: String, required: true },
-  
+
   date: {
     type: Date,
     default: Date.now()
@@ -92,4 +92,4 @@ const SaccoSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 const Sacco = mongoose.model('Sacco', SaccoSchema);
 
-module.exports = {User, Sacco};
+module.exports = { User, Sacco };

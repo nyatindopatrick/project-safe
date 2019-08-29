@@ -36,13 +36,14 @@
                   <div class="form-group">
                     <label class="form-control-label" for="name">Sacco Name</label>
                     <input required autocomplete="off" type="name" id="name" name="name" class="form-control"
-                    placeholder="Enter Name" value="<%= sacco.name %>"/>
+                      placeholder="Enter Name" value="<%= sacco.name %>" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label  class="form-control-label" for="email">Email address</label>
-                    <input required autocomplete="off" type="email" id="email" name="email" class="form-control form-control-alternative" placeholder="email" value="<%= sacco.email%>"/>
+                    <label class="form-control-label" for="email">Email address</label>
+                    <input required autocomplete="off" type="email" id="email" name="email"
+                      class="form-control form-control-alternative" placeholder="email" value="<%= sacco.email%>" />
                   </div>
                 </div>
               </div>
@@ -51,14 +52,15 @@
                   <div class="form-group">
                     <label class="form-control-label" for="uniqueSaccoCode">Sacco Code</label>
                     <input type="uniqueSaccoCode" id="uniqueSaccoCode" name="uniqueSaccoCode" class="form-control"
-                    placeholder="" value="<%=sacco.uniqueSaccoCode %>"/>
+                      placeholder="" value="<%=sacco.uniqueSaccoCode %>" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="registration_number">Registration Number</label>
-                    <input required autocomplete="off" type="number" id="registration_number" name="registration_number" class="form-control form-control-alternative"
-                      placeholder="Registration Number" value="<%= sacco.registration_number %>"/>
+                    <input required autocomplete="off" type="number" id="registration_number" name="registration_number"
+                      class="form-control form-control-alternative" placeholder="Registration Number"
+                      value="<%= sacco.registration_number %>" />
                   </div>
                 </div>
               </div>
@@ -66,15 +68,16 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="membership">Membership</label>
-                    <input required type="text" id="membership" name="membership" class="form-control form-control-alternative"
-                      placeholder="membership" value="<%= sacco.membership %>"/>
+                    <input required type="text" id="membership" name="membership"
+                      class="form-control form-control-alternative" placeholder="membership"
+                      value="<%= sacco.membership %>" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="created">Created</label>
                     <input type="text" id="created" name="created" class="form-control form-control-alternative"
-                      placeholder="Created" value="<%=sacco.created%>"/>
+                      placeholder="Created" value="<%=sacco.created%>" />
                   </div>
                 </div>
               </div>
@@ -82,8 +85,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="date_founded">Date Founded</label>
-                    <input required autocomplete="off" type="text" id="date_founded" name="date_founded" class="form-control form-control-alternative"
-                      placeholder="Date Founded" value="<%= sacco.date_founded %>"/>
+                    <input required autocomplete="off" type="text" id="date_founded" name="date_founded"
+                      class="form-control form-control-alternative" placeholder="Date Founded"
+                      value="<%= sacco.date_founded %>" />
                   </div>
                 </div>
               </div>
@@ -91,15 +95,15 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="password">Enter Password</label>
-                    <input autocomplete="off" type="password" id="password" name="password" class="form-control form-control-alternative"
-                      placeholder="Enter password" value=""/>
+                    <input autocomplete="off" type="password" id="password" name="password"
+                      class="form-control form-control-alternative" placeholder="Enter password" value="" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="password2">Confirm Password</label>
-                    <input autocomplete="off" type="password" id="password2" name="password2" class="form-control form-control-alternative"
-                      placeholder="Confirm password" value=""/>
+                    <input autocomplete="off" type="password" id="password2" name="password2"
+                      class="form-control form-control-alternative" placeholder="Confirm password" value="" />
                   </div>
                 </div>
               </div>
@@ -112,33 +116,36 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Postal Address</label>
-                    <input required autocomplete="off" id="address" name="address" class="form-control form-control-alternative" placeholder="Box Address" value="<%=sacco.address%>"
-                      type="text"/>
+                    <input required autocomplete="off" id="address" name="address"
+                      class="form-control form-control-alternative" placeholder="Box Address" value="<%=sacco.address%>"
+                      type="text" />
                   </div>
                 </div>
               </div>
               <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label autocomplete="off" class="form-control-label" for="website">Website</label>
-                      <input id="website" name="website" class="form-control form-control-alternative" placeholder="Website" value="<%=sacco.website%>"
-                        type="text"/>
-                    </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label autocomplete="off" class="form-control-label" for="website">Website</label>
+                    <input id="website" name="website" class="form-control form-control-alternative"
+                      placeholder="Website" value="<%=sacco.website%>" type="text" />
                   </div>
                 </div>
+              </div>
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="postal_code">Postal Code</label>
-                    <input required autocomplete="off" type="number" id="postal_code" name="postal_code" class="form-control form-control-alternative"
-                      placeholder="postal code" value="<%=sacco.postal_code%>"/>
+                    <input required autocomplete="off" type="number" id="postal_code" name="postal_code"
+                      class="form-control form-control-alternative" placeholder="postal code"
+                      value="<%=sacco.postal_code%>" />
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="telephone_number">Telephone Number</label>
-                    <input required autocomplete="off" type="number" id="telephone_number" name="telephone_number" class="form-control form-control-alternative"
-                      placeholder="Telephone Number" value="<%=sacco.telephone_number%>"/>
+                    <input required autocomplete="off" type="number" id="telephone_number" name="telephone_number"
+                      class="form-control form-control-alternative" placeholder="Telephone Number"
+                      value="<%=sacco.telephone_number%>" />
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -150,28 +157,31 @@
                 </div>
               </div>
               <div class="row">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="saccoLeaderFname">Sacco Leader's First Name</label>
-                      <input required autocomplete="off" type="name" id="saccoLeaderFname" name="saccoLeaderFname" class="form-control form-control-alternative"
-                        placeholder="First Name" value="<%=sacco.saccoLeaderFname%>"/>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="saccoLeaderLname">Sacco Leader's Last Name</label>
-                      <input required autocomplete="off" type="name" id="saccoLeaderLname" name="saccoLeaderLname" class="form-control form-control-alternative"
-                        placeholder="Last Name" value="<%=sacco.saccoLeaderLname%>"/>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="saccoLeaderPhoneNumber">Sacco Leader's Phone Number </label>
-                      <input required autocomplete="off" type="number" id="saccoLeaderPhoneNumber" name="saccoLeaderPhoneNumber" class="form-control form-control-alternative"
-                        value="<%=sacco.saccoLeaderPhoneNumber%>"/>
-                    </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="saccoLeaderFname">Sacco Leader's First Name</label>
+                    <input required autocomplete="off" type="name" id="saccoLeaderFname" name="saccoLeaderFname"
+                      class="form-control form-control-alternative" placeholder="First Name"
+                      value="<%=sacco.saccoLeaderFname%>" />
                   </div>
                 </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="saccoLeaderLname">Sacco Leader's Last Name</label>
+                    <input required autocomplete="off" type="name" id="saccoLeaderLname" name="saccoLeaderLname"
+                      class="form-control form-control-alternative" placeholder="Last Name"
+                      value="<%=sacco.saccoLeaderLname%>" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="saccoLeaderPhoneNumber">Sacco Leader's Phone Number </label>
+                    <input required autocomplete="off" type="number" id="saccoLeaderPhoneNumber"
+                      name="saccoLeaderPhoneNumber" class="form-control form-control-alternative"
+                      value="<%=sacco.saccoLeaderPhoneNumber%>" />
+                  </div>
+                </div>
+              </div>
             </div>
             <hr class="my-4" />
             <!-- Description -->
@@ -183,12 +193,12 @@
                   placeholder="A few words about the sacco ..." value=""><%=sacco.about%></textarea>
               </div>
             </div>
-            <button style="float: right;" class="btn btn-success" type="submit">Submit</button>
+            <button style="float: right;" class="btn btn-success" type="submit">Save</button>
           </form>
         </div>
       </div>
     </div>
   </div>
   <!-- Footer -->
-<% include ./partials/footer %>
+  <% include ./partials/footer %>
 </div>

@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
 const app = express();
-app.use( express.static( "public" ) );
+app.use(express.static("public"));
 // app.use( express.static( "uploads" ) );
 app.use(logger('dev'))
 // Passport Config
@@ -63,7 +63,7 @@ app.use(passport.session());
 app.use(flash());
 
 // Global variables
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');

@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Load User model
-const {User, Sacco} = require('../models/user');
+const { User, Sacco } = require('../models/user');
 
-module.exports = function(passport) {
+module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       User.findOne({
@@ -28,12 +28,12 @@ module.exports = function(passport) {
     })
   );
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+  passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
       done(err, user);
     });
   });

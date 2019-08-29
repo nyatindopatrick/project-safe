@@ -21,38 +21,46 @@ function saccoCode(length) {
 function creatd(d) {
   return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 }
-
+router.get('/logs', ensureAuthenticated, (req, res) =>
+  res.render('logs', {
+    user: req.user
+  }));
 // Register Page
 router.get('/register', ensureAuthenticated, (req, res) => res.render('register', {
   user: req.user,
   saccoCode: saccoCode(8),
   creatd: creatd(new Date)
 }));
-
+//Admin profile page
+router.get('/myprofile', ensureAuthenticated, (req, res) =>
+  res.render('adminprofile', {
+    user: req.user
+  })
+)
 //single Sacco profile page
 router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
   Sacco.findById(req.params.saccoId)
-  .then(sacco => {
-    if(!sacco) {
+    .then(sacco => {
+      if (!sacco) {
         return res.status(404).send({
-            message: "Sacco not found with id " + req.params.saccoId
-        });            
-    }
-    res.status(200);
-    res.render("saccoprofile", {
-      sacco: sacco,
-      user: req.user
-    });
-}).catch(err => {
-    if(err.kind === 'ObjectId') {
+          message: "Sacco not found with id " + req.params.saccoId
+        });
+      }
+      res.status(200);
+      res.render("saccoprofile", {
+        sacco: sacco,
+        user: req.user
+      });
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
         return res.status(404).send({
-            message: "Sacco not found with id " + req.params.saccoId
-        });                
-    }
-    return res.status(500).send({
+          message: "Sacco not found with id " + req.params.saccoId
+        });
+      }
+      return res.status(500).send({
         message: "Error retrieving Sacco with id " + req.params.saccoId
+      });
     });
-});
 
 });
 
@@ -60,13 +68,13 @@ router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   Sacco.find()
-  .exec()
-  .then(sacco => {
-    res.render('dashboard', {
-      user: req.user,
-      sacco: sacco
-    })
-  });
+    .exec()
+    .then(sacco => {
+      res.render('dashboard', {
+        user: req.user,
+        sacco: sacco
+      })
+    });
 
 });
 

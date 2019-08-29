@@ -9,7 +9,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
-//generate random Sacco code
+//generate random unique Sacco code
 const d = new Date;
 function saccoCode(length) {
   var result = '';
@@ -34,7 +34,6 @@ router.get('/register', ensureAuthenticated, (req, res) => res.render('register'
 }));
 
 
-
 // Register
 router.post('/admin', (req, res, next) => {
   const { name, email, password, password2 } = req.body;
@@ -52,62 +51,46 @@ router.post('/admin', (req, res, next) => {
     errors.push({ msg: 'Password must be at least 6 characters' });
   }
 
-    User.findOne({ email: email }).then(user => {
-      if (user) {
-        errors.push({ msg: 'Email already exists' });
+  User.findOne({ email: email }).then(user => {
+    if (user) {
+      errors.push({ msg: 'Email already exists' });
 
-      } else {
-        const newUser = new User({
-          name,
-          email,
-          password
+    } else {
+      const newUser = new User({
+        name,
+        email,
+        password
+      });
+      //hash password
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => {
+              req.flash(
+                'success_msg',
+                'You are now registered and can log in'
+              );
+
+              res.redirect('/users/login');
+            })
+            .catch(err => console.log(err));
         });
+      });
+    }
+  });
 
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You are now registered and can log in'
-                );
-
-                res.redirect('/users/login');
-              })
-              .catch(err => console.log(err));
-          });
-        });
-      }
-    });
-  
 });
 
-
-
-
+//register new sacco
 router.post("/saccoadmin", (req, res) => {
   const {
-    name,
-    uniqueSaccoCode,
-    address,
-    postal_code,
-    registration_number,
-    telephone_number,
-    membership,
-    date_founded,
-    description,
-    website,
-    created,
-    saccoLeaderFname,
-    saccoLeaderLname,
-    saccoLeaderPhoneNumber,
-    status,
-    email,
-    password,
-    password2
+    name, uniqueSaccoCode, address, postal_code, registration_number,
+    telephone_number, membership, date_founded, description, website,
+    created, saccoLeaderFname, saccoLeaderLname, saccoLeaderPhoneNumber,
+    status, email, password, password2
   } = req.body;
   console.log(req.body);
   let errors = [];
@@ -125,24 +108,10 @@ router.post("/saccoadmin", (req, res) => {
   if (errors.length > 0) {
     res.render('register', {
       errors,
-      name,
       email,
       password,
       password2,
-      uniqueSaccoCode,
-      address,
-      postal_code,
-      registration_number,
-      telephone_number,
-      membership,
-      date_founded,
-      description,
-      website,
-      created,
-      saccoLeaderFname,
-      saccoLeaderLname,
-      saccoLeaderPhoneNumber,
-      status
+
     });
   } else {
     Sacco.findOne({ email: email }).then(user => {
@@ -150,24 +119,9 @@ router.post("/saccoadmin", (req, res) => {
         errors.push({ msg: 'The Sacco already exists' });
         res.render('register', {
           errors,
-          name,
-          uniqueSaccoCode,
-          address,
-          postal_code,
-          registration_number,
-          telephone_number,
-          membership,
-          date_founded,
-          description,
-          website,
-          created,
-          saccoLeaderFname,
-          saccoLeaderLname,
-          saccoLeaderPhoneNumber,
-          status,
-          email,
-          password,
-          password2
+          name, uniqueSaccoCode, address, postal_code, registration_number, telephone_number, membership,
+          date_founded, description, website, created, saccoLeaderFname, saccoLeaderLname,
+          saccoLeaderPhoneNumber, status, email, password, password2
         });
       } else {
         const newUser = new Sacco({
@@ -189,7 +143,7 @@ router.post("/saccoadmin", (req, res) => {
           email,
           password,
         });
-
+        //Hash password
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
@@ -204,14 +158,13 @@ router.post("/saccoadmin", (req, res) => {
               .catch(err => console.log(err));
           });
         });
-     }
+      }
     });
- }
+  }
 });
 
-
+//Update specific sacco details
 router.put('/:saccoId', (req, res) => {
-
   Sacco.findByIdAndUpdate(req.params.saccoId, {
     name: req.body.name,
     address: req.body.address,
@@ -226,7 +179,7 @@ router.put('/:saccoId', (req, res) => {
     status: req.body.status,
     email: req.body.email
   }, { new: true })
-    .then(sacco=> {
+    .then(sacco => {
       if (!sacco) {
         return res.status(404).send({
           message: "Note not found with id " + req.params.saccoId
@@ -244,10 +197,6 @@ router.put('/:saccoId', (req, res) => {
       });
     })
 });
-
-
-
-
 
 // Login
 router.post('/login', (req, res, next) => {

@@ -1,4 +1,4 @@
-require ('dotenv').config();
+require('dotenv').config();
 
 dbPassword = process.env.API_KEY;
 
