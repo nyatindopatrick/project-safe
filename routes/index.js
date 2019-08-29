@@ -29,6 +29,34 @@ router.get('/register', ensureAuthenticated, (req, res) => res.render('register'
   creatd: creatd(new Date)
 }));
 
+//single Sacco profile page
+router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
+  Sacco.findById(req.params.saccoId)
+  .then(sacco => {
+    if(!sacco) {
+        return res.status(404).send({
+            message: "Sacco not found with id " + req.params.saccoId
+        });            
+    }
+    res.status(200);
+    res.render("saccoprofile", {
+      sacco: sacco,
+      user: req.user
+    });
+}).catch(err => {
+    if(err.kind === 'ObjectId') {
+        return res.status(404).send({
+            message: "Sacco not found with id " + req.params.saccoId
+        });                
+    }
+    return res.status(500).send({
+        message: "Error retrieving Sacco with id " + req.params.saccoId
+    });
+});
+
+});
+
+
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   Sacco.find()

@@ -31,7 +31,10 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Active Saccos</h5>
-                    <span class="h2 font-weight-bold mb-0">0</span>
+           
+                        <span class="h2 font-weight-bold mb-0"><%=0%></span>
+                         
+             
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -155,9 +158,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="/profile/<%=items._id%>">Edit</a>
+                        <a class="dropdown-item" href="#">Deactivate</a>
                       </div>
                     </div>
                   </td>

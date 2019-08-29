@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const app = express();
 app.use( express.static( "public" ) );
@@ -40,6 +41,7 @@ app.set('view engine', 'ejs');
 
 // initialize body-parser to parse incoming parameters requests to req.body
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 // initialize cookie-parser to allow us access the cookies stored in the browser. 
 app.use(cookieParser());

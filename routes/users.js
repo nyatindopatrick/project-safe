@@ -34,6 +34,7 @@ router.get('/register', ensureAuthenticated, (req, res) => res.render('register'
 }));
 
 
+
 // Register
 router.post('/admin', (req, res, next) => {
   const { name, email, password, password2 } = req.body;
@@ -208,33 +209,30 @@ router.post("/saccoadmin", (req, res) => {
  }
 });
 
-router.put('/saccoadmin/:saccoId', (req, res) => {
+
+router.put('/:saccoId', (req, res) => {
 
   Sacco.findByIdAndUpdate(req.params.saccoId, {
     name: req.body.name,
-    uniqueSaccoCode: req.body.uniqueSaccoCode,
     address: req.body.address,
     postal_code: req.body.postal_code,
-    registration_number: req.body.registration_number,
     telephone_number: req.body.telephone_number,
     membership: req.body.membership,
-    date_founded: req.body.date_founded,
     description: req.body.description,
     website: req.body.website,
-    created: req.body.created,
     saccoLeaderFname: req.body.saccoLeaderFname,
     saccoLeaderLname: req.body.saccoLeaderLname,
     saccoLeaderPhoneNumber: req.body.saccoLeaderPhoneNumber,
     status: req.body.status,
     email: req.body.email
   }, { new: true })
-    .then(note => {
-      if (!note) {
+    .then(sacco=> {
+      if (!sacco) {
         return res.status(404).send({
           message: "Note not found with id " + req.params.saccoId
         });
       }
-      res.send(note);
+      res.redirect('/dashboard');
     }).catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
