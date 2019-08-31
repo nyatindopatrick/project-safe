@@ -94,7 +94,7 @@ router.post("/saccoadmin", (req, res) => {
     created, saccoLeaderFname, saccoLeaderLname, saccoLeaderPhoneNumber,
     status, email, password, password2
   } = req.body;
-  console.log(req.body);
+
   let errors = [];
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please enter all fields' });

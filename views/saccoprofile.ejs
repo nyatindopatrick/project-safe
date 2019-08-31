@@ -151,7 +151,7 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="status">Status</label>
-                    <input type="text" name="status" onclick="change()" id="status" class="btn btn-success"
+                    <input type="text" name="status" id="status" class="form-control form-control-alternative"
                       value="<%=sacco.status%>">
                   </div>
                 </div>
@@ -201,10 +201,10 @@
   </div>
   <script>
     function change() // no ';' here
-{
-    if (this.value==="Active" && this.class=="btn btn-danger") this.value = "Deactivated" && this.class=="btn btn-success";
-    else this.value = "Active" && this.class=="btn btn-danger";
-}
+    {
+      if (value == "Active") { value = "Deactivated"; }
+      else { this.value = "Active" };
+    }
   </script>
   <!-- Footer -->
   <% include ./partials/footer %>

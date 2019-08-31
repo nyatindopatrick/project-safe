@@ -52,7 +52,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="uniqueSaccoCode">Sacco Code</label>
-                    <input type="uniqueSaccoCode" id="uniqueSaccoCode" name="uniqueSaccoCode" class="form-control"
+                    <input readonly type="uniqueSaccoCode" id="uniqueSaccoCode" name="uniqueSaccoCode" class="form-control"
                       placeholder=""
                       value="<%= typeof uniqueSaccoCode != 'undefined' ? uniqueSaccoCode : saccoCode %>" />
                   </div>
@@ -78,7 +78,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="created">Created</label>
-                    <input type="text" id="created" name="created" class="form-control form-control-alternative"
+                    <input readonly type="text" id="created" name="created" class="form-control form-control-alternative"
                       placeholder="Created" value="<%=creatd%>" />
                   </div>
                 </div>
@@ -152,7 +152,7 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="status">Status</label>
-                    <input type="text" name="status" id="status" class="form-control form-control-alternative"
+                    <input readonly type="text" name="status" id="status" class="form-control form-control-alternative"
                       value="Active">
                   </div>
                 </div>
