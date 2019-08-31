@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form action="/users/<%=sacco._id%>?_method=PUT" method="POST" enctype="application/x-www-form-urlencoded">
+          <form action="/users/<%=sacco._id%>?_method=PATCH" method="POST" enctype="application/x-www-form-urlencoded">
             <h6 class="heading-small text-muted mb-4">User information</h6>
             <div class="pl-lg-4">
               <div class="row">
@@ -151,7 +151,7 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="status">Status</label>
-                    <input type="text" name="status" id="status" class="form-control form-control-alternative"
+                    <input type="text" name="status" onclick="change()" id="status" class="btn btn-success"
                       value="<%=sacco.status%>">
                   </div>
                 </div>
@@ -199,6 +199,13 @@
       </div>
     </div>
   </div>
+  <script>
+    function change() // no ';' here
+{
+    if (this.value==="Active" && this.class=="btn btn-danger") this.value = "Deactivated" && this.class=="btn btn-success";
+    else this.value = "Active" && this.class=="btn btn-danger";
+}
+  </script>
   <!-- Footer -->
   <% include ./partials/footer %>
 </div>

@@ -47,7 +47,7 @@ router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
         });
       }
       res.status(200);
-      res.render("saccoprofile", {
+      res.render("saccoprofile",{
         sacco: sacco,
         user: req.user
       });
@@ -63,7 +63,6 @@ router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
     });
 
 });
-
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {

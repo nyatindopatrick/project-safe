@@ -189,8 +189,8 @@ router.post("/saccoadmin", (req, res) => {
 });
 
 //Update specific sacco details
-router.put('/:saccoId', (req, res) => {
-  Sacco.findByIdAndUpdate(req.params.saccoId, {
+router.patch('/:saccoId', (req, res) => {
+  Sacco.findByIdAndUpdate({ _id: req.params.saccoId }, {
     name: req.body.name,
     address: req.body.address,
     postal_code: req.body.postal_code,
@@ -207,21 +207,44 @@ router.put('/:saccoId', (req, res) => {
     .then(sacco => {
       if (!sacco) {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.saccoId
+          message: "Sacco not found with id " + req.params.saccoId
         });
       }
       res.redirect('/dashboard');
     }).catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.saccoId
+          message: "Sacconot found with id " + req.params.saccoId
         });
       }
       return res.status(500).send({
-        message: "Error updating note with id " + req.params.saccoId
+        message: "Error updating Sacco with id " + req.params.saccoId
       });
     })
 });
+router.put('status/:saccoId', (req, res) => {
+  Sacco.findByIdAndUpdate({ _id: req.params.saccoId }, {
+    status: req.body.status,
+  }, { new: true })
+    .then(sacco => {
+      if (!sacco) {
+        return res.status(404).send({
+          message: "Sacco not found with id " + req.params.saccoId
+        });
+      }
+      res.redirect('/dashboard');
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Sacco not found with id " + req.params.saccoId
+        });
+      }
+      return res.status(500).send({
+        message: "Error updating Sacco with id " + req.params.saccoId
+      });
+    })
+});
+
 
 // Login
 router.post('/login', (req, res, next) => {
@@ -238,5 +261,6 @@ router.get('/logout', (req, res) => {
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
+
 
 module.exports = router;

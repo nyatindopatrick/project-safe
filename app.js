@@ -23,12 +23,14 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose.set('useCreateIndex', true)
 mongoose
   .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+    db, {
+      keepAlive: true,
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
@@ -36,11 +38,10 @@ mongoose
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-// Express body parser
-
 
 // initialize body-parser to parse incoming parameters requests to req.body
 app.use(bodyParser.urlencoded({ extended: true }));
+// Override method for POST to PATCH and PUT
 app.use(methodOverride('_method'));
 
 // initialize cookie-parser to allow us access the cookies stored in the browser. 
@@ -73,6 +74,11 @@ app.use(function (req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+
+//error 404 page middleware
+app.use((req, res) => {
+  res.status(404).render('error');
+});
 
 const PORT = process.env.PORT || 5000;
 
