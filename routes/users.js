@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const sgMail = require('@sendgrid/mail');
+const nodemailer = require('nodemailer');
 require('dotenv').config()
 // Load User model
 const { User, Sacco } = require('../models/user');
@@ -94,7 +94,7 @@ router.post("/saccoadmin", (req, res) => {
     created, saccoLeaderFname, saccoLeaderLname, saccoLeaderPhoneNumber,
     status, email, password, password2
   } = req.body;
-
+  console.log(req.body);
   let errors = [];
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please enter all fields' });
@@ -146,18 +146,29 @@ router.post("/saccoadmin", (req, res) => {
           password,
         });
 
-        //Send email(sendgrid)
-        sgMail.setApiKey(process.env.PASS);
-        const msg = {
-          to: email,
-          from: 'admin@fikasafe.com',
-          subject: 'Fika Safe Credentials',
-          html: `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br>`+
-          `Email: ${email}<br>Passowrd: ${password}</strong>`,
-        };
-        sgMail.send(msg);
-        console.log("Email sent!");
+        //Send email(nodemailer)
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: "patrickotieno39@gmail.com",
+            pass: process.env.PASS
+          }
+        });
 
+        const mailOptions = {
+          from: "patrickotieno39@gmail.com",
+          to: email,
+          subject: "Fika Safe Credentials",
+          html: `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br>`+
+          `Email: ${email}<br>Passowrd: ${password}</strong>`
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        });
         //Hash password
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -254,3 +265,4 @@ router.get('/logout', (req, res) => {
 
 
 module.exports = router;
+
