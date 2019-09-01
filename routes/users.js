@@ -149,7 +149,7 @@ router.post("/saccoadmin", (req, res) => {
         //Send email(sendgrid)
         sgMail.setApiKey(process.env.PASS);
         const msg = {
-          to: 'nyatindopatrick@gmail.com',
+          to: email,
           from: 'admin@fikasafe.com',
           subject: 'Fika Safe Credentials',
           html: `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br>`+
