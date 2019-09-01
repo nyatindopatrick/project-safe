@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config()
 // Load User model
 const { User, Sacco } = require('../models/user');
@@ -146,28 +146,18 @@ router.post("/saccoadmin", (req, res) => {
           password,
         });
 
-        //Send email(nodemailer)
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: "patrickotieno39@gmail.com",
-            pass: process.env.PASS
-          }
-        });
-
-        const mailOptions = {
-          from: "patrickotieno39@gmail.com",
-          to: email,
-          subject: "Fika Safe Credentials",
-          text: `Thank you for registerign with Fika Safe. Your login credentials are: \nEmail: ${email}\nPassowrd: ${password}`
+        //Send email(sendgrid)
+        sgMail.setApiKey(process.env.PASS);
+        const msg = {
+          to: 'nyatindopatrick@gmail.com',
+          from: 'admin@fikasafe.com',
+          subject: 'Fika Safe Credentials',
+          html: `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br>`+
+          `Email: ${email}<br>Passowrd: ${password}</strong>`,
         };
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
-        });
+        sgMail.send(msg);
+        console.log("Email sent!");
+
         //Hash password
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
