@@ -87,9 +87,9 @@
           var pagenum = Math.ceil(totalRows / maxRows);	// ceil total(rows/maxrows) to get ..  
           //	numbers of pages 
           for (var i = 1; i <= pagenum;) {			// for each page append pagination li 
-            $('.pagination #prev').before('<li data-page="' + i + '">\
-								      <span style="margin: 5px">'+ i++ + '<span class="sr-only">(current)</span></span>\
-								    </li>').show();
+            $('.pagination #prev').before('<li data-page="' + i + '" class="page-item ">\
+              <a class="page-link" href="#">'+ i++ + '<span class="sr-only">(current)</span></a>\
+                    </li>').show();
           }											// end for i 
         } 												// end if row count > max rows
         $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li 
