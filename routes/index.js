@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const { User, Sacco } = require('../models/user');
+const { User, Sacco, Sms } = require('../models/user');
 // Welcome Page
-router.get('/', forwardAuthenticated, (req, res) => res.render('login'));
+router.get('/', forwardAuthenticated, (req, res) => res.render('homepage'));
 
 //generate random Sacco code
 const d = new Date;
@@ -21,10 +21,17 @@ function saccoCode(length) {
 function creatd(d) {
   return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 }
-router.get('/logs', ensureAuthenticated, (req, res) =>
-  res.render('logs', {
-    user: req.user
-  }));
+router.get('/logs', ensureAuthenticated, (req, res) =>{
+  Sms.find()
+  .exec()
+  .then(log => {
+    res.status(200)
+    res.render('logs', {
+      user: req.user,
+      log:log
+    })
+  });
+});
 // Register Page
 router.get('/register', ensureAuthenticated, (req, res) => res.render('register', {
   user: req.user,
@@ -47,7 +54,7 @@ router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
         });
       }
       res.status(200);
-      res.render("saccoprofile",{
+      res.render("saccoprofile", {
         sacco: sacco,
         user: req.user
       });
@@ -61,7 +68,6 @@ router.get('/profile/:saccoId', ensureAuthenticated, (req, res) => {
         message: "Error retrieving Sacco with id " + req.params.saccoId
       });
     });
-
 });
 
 // Dashboard
@@ -69,12 +75,22 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   Sacco.find()
     .exec()
     .then(sacco => {
+      const response = {
+        products: sacco.map(doc => {
+          const arr = [];
+          if (doc.status==="Active"){
+            arr.push(1)
+          }
+          return arr
+        })
+      };
       res.render('dashboard', {
         user: req.user,
-        sacco: sacco
+        sacco: sacco,
+        doc: response.products.join('')
       })
+    })
     });
 
-});
 
 module.exports = router;

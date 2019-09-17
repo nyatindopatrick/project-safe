@@ -4,7 +4,7 @@
   "description": "fika-safe",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "concurrently \"node app.js\" \"cd sacco && npm start\"",
     "dev": "nodemon app.js"
   },
   "keywords": [],
@@ -12,7 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
+    "africastalking": "^0.4.1",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.1.0",
@@ -25,6 +27,7 @@
     "mongodb": "^3.3.1",
     "mongoose": "^5.6.11",
     "morgan": "^1.9.1",
+    "node-mailjet": "^3.3.1",
     "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"

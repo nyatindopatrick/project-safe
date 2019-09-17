@@ -89,7 +89,21 @@ const SaccoSchema = new mongoose.Schema({
   }
 });
 
+const smsSchema = new mongoose.Schema({
+  text: {
+    type: String
+  },
+  from: {
+    type: Number
+  },
+  time: {
+    type: Date,
+    default: Date.now()
+  }
+})
+
 const User = mongoose.model('User', UserSchema);
 const Sacco = mongoose.model('Sacco', SaccoSchema);
+const Sms = mongoose.model('Sms', smsSchema);
 
-module.exports = { User, Sacco };
+module.exports = { User, Sacco, Sms };

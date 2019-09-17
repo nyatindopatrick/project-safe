@@ -1,0 +1,230 @@
+<% include ./partials/navbar %>
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 400px; background-image: url(/assets/img/brand/fikasback.png); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-3 text-white">New Rider</h1>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--8">
+  <div class="row">
+
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">New account</h3>
+              <% include ./partials/messages %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form action="/sacco/register" method="POST" enctype="application/x-www-form-urlencoded">
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderFname">First Name</label>
+                    <input required autocomplete="off" type="text" id="riderFname" name="riderFname"
+                      class="form-control form-control-alternative" placeholder="First Name" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderSurName">Surname</label>
+                    <input required autocomplete="off" type="text" id="riderSurName" name="riderSurName"
+                      class="form-control form-control-alternative" placeholder="Surname" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderLname">Last Name</label>
+                    <input type="text" name="riderLname" id="riderLname" class="form-control form-control-alternative"
+                      placeholder="Last Name" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="drivingLicense">Driving License</label>
+                    <input required autocomplete="off" type="text" id="drivingLicense" name="drivingLicense"
+                      class="form-control form-control-alternative" placeholder="Driving License" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="DLIssueDate">Driving License Isssue Date</label>
+                    <input required autocomplete="off" type="date" id="DLIssueDate" name="DLIssueDate"
+                      class="form-control form-control-alternative" placeholder="Isssue Date" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="DLExpDate">Driving License Expiry Date</label>
+                    <input type="date" name="DLExpDate" id="DLExpDate" class="form-control form-control-alternative"
+                      placeholder="Expiry Date" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="insuranceNumber">Insurance Number</label>
+                    <input required autocomplete="off" type="text" id="insuranceNumber" name="insuranceNumber"
+                      class="form-control form-control-alternative" placeholder="Insurance Number" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="insuranceIssueDate">Insurance Isssue Date</label>
+                    <input required autocomplete="off" type="date" id="insuranceIssueDate" name="insuranceIssueDate"
+                      class="form-control form-control-alternative" placeholder="Isssue Date" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="insuranceExpDate">Insurance Expiry Date</label>
+                    <input type="date" name="insuranceExpDate" id="insuranceExpDate"
+                      class="form-control form-control-alternative" placeholder="Expiry Date" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="numberPlate">Plate Number</label>
+                    <input required autocomplete="off" type="text" id="numberPlate" name="numberPlate"
+                      class="form-control" placeholder="Plate Number" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderID">ID Number</label>
+                    <input required autocomplete="off" type="number" id="riderID" name="riderID"
+                      class="form-control form-control-alternative" placeholder="ID Number" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="status">Status</label>
+                    <input readonly type="text" name="status" id="status" class="form-control form-control-alternative"
+                      value="Active">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="sacco">Sacco</label>
+                      <input readonly type="text" name="sacco" id="sacco" class="form-control form-control-alternative"
+                        value="<%=user.name%>">
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderTelNumber">Telephone Number</label>
+                    <input required autocomplete="off" type="number" id="riderTelNumber" name="riderTelNumber"
+                      class="form-control form-control-alternative" placeholder="Telephone Number" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderBase">Base</label>
+                    <input required autocomplete="off" type="text" id="riderBase" name="riderBase"
+                      class="form-control form-control-alternative" placeholder="Base" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="riderResidence">Residence</label>
+                    <input type="text" name="riderResidence" id="riderResidence" placeholder="Residence"
+                      class="form-control form-control-alternative" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="motorBikeMake">Motorbike Make</label>
+                    <input required autocomplete="off" type="text" id="motorBikeMake" name="motorBikeMake"
+                      class="form-control form-control-alternative" placeholder="Motorbike Make" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="motorBikeBrand">Motorbike Brand</label>
+                    <input required autocomplete="off" type="text" id="motorBikeBrand" name="motorBikeBrand"
+                      class="form-control form-control-alternative" placeholder="Motorbike Brand" value="" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <h6 class="heading-small text-muted mb-4">Bike Owner's Information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bikeOwnerFname">First Name</label>
+                    <input required autocomplete="off" type="text" id="bikeOwnerFname" name="bikeOwnerFname"
+                      class="form-control form-control-alternative" placeholder="First Name" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bikeOwnerLname">Last Name</label>
+                    <input required autocomplete="off" type="text" id="bikeOwnerLname" name="bikeOwnerLname"
+                      class="form-control form-control-alternative" placeholder="Last Name" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bikeOwnerID">ID Number</label>
+                    <input type="text" name="bikeOwnerID" id="bikeOwnerID" placeholder="ID Number"
+                      class="form-control form-control-alternative" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bikeOwnerTelNumber">Phone Number</label>
+                    <input required autocomplete="off" type="number" id="bikeOwnerTelNumber" name="bikeOwnerTelNumber"
+                      class="form-control form-control-alternative" placeholder="Phone Number" value="" />
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bikeOwnerResidence">Residence</label>
+                    <input required autocomplete="off" type="text" id="bikeOwnerResidence" name="bikeOwnerResidence"
+                      class="form-control form-control-alternative" placeholder="Residence" value="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <button style="float: right;" class="btn btn-success" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <% include ./partials/footer %>
+</div>
