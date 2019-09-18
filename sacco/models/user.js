@@ -210,6 +210,10 @@ const riderSchema = new mongoose.Schema(
       min: 0,
       max: [5, 'Number of stars cannot exceed 5'],
     },
+    mysacco: {
+      type: String,
+      required: true
+    },
 
     // THIS IS WHERE WE REFERENCE THE RIDER TO THEIR RESPECTIVE SACCOS
     sacco: {
@@ -237,4 +241,4 @@ const Sms = mongoose.model('Sms', smsSchema);
 const Rider = mongoose.model('Rider', riderSchema);
 const Sacco = mongoose.model('Sacco', SaccoSchema);
 
-module.exports = { Sacco, Rider ,Sms};
+module.exports = { Sacco, Rider, Sms };
