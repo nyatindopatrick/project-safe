@@ -228,8 +228,8 @@ const smsSchema = new mongoose.Schema({
     type: Number
   },
   time: {
-    type: Date,
-    default: Date.now()
+    type: String,
+  
   }
 })
 const Sms = mongoose.model('Sms', smsSchema);
