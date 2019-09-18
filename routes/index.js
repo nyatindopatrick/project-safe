@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const { User, Sacco, Sms } = require('../models/user');
+const { Rider, Sacco, Sms } = require('../models/user');
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('homepage'));
 
@@ -21,16 +21,16 @@ function saccoCode(length) {
 function creatd(d) {
   return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 }
-router.get('/logs', ensureAuthenticated, (req, res) =>{
+router.get('/logs', ensureAuthenticated, (req, res) => {
   Sms.find()
-  .exec()
-  .then(log => {
-    res.status(200)
-    res.render('logs', {
-      user: req.user,
-      log:log
-    })
-  });
+    .exec()
+    .then(log => {
+      res.status(200)
+      res.render('logs', {
+        user: req.user,
+        log: log
+      })
+    });
 });
 // Register Page
 router.get('/register', ensureAuthenticated, (req, res) => res.render('register', {
@@ -78,19 +78,25 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
       const response = {
         products: sacco.map(doc => {
           const arr = [];
-          if (doc.status==="Active"){
+          if (doc.status === "Active") {
             arr.push(1)
           }
           return arr
         })
       };
-      res.render('dashboard', {
-        user: req.user,
-        sacco: sacco,
-        doc: response.products.join('')
-      })
+      Rider.find()
+        .then(rider =>
+          res.render('dashboard', {
+            user: req.user,
+            sacco: sacco,
+            doc: response.products.join(''),
+            rider: rider
+          })
+        );
+
     })
-    });
+
+});
 
 
 module.exports = router;

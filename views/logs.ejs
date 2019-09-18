@@ -22,7 +22,6 @@
       <div class="table-responsive">
         <table class="table align-items-center table-dark table-flush">
           <thead class="thead-dark">
-            <% log.map(function(result){%>
             <tr>
               <th scope="col">Phone Number</th>
               <th scope="col">Plate number</th>
@@ -30,11 +29,13 @@
               <th scope="col"></th>
             </tr>
           </thead>
+          <% log.map(function(result){%>
           <tbody>
             <tr>
-              <th scope="row">
+              <th scope="row"> 
                 <div class="media align-items-center">
                   <div class="media-body">
+                     
                     <span class="mb-0 text-sm"><%=result.from%></span>
                   </div>
                 </div>
@@ -49,8 +50,8 @@
               </td>
             </tr>
           </tbody>
-        </table>
-        <%})%>
+          <%})%>
+        </table> 
       </div>
     </div>
   </div>

@@ -75,6 +75,7 @@ app.use(function (req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/sacco', require('./routes/users.js'));
+app.use('/sms', require('./routes/sms.js'));
 
 
 //error 404 page middleware

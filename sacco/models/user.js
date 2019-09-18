@@ -220,7 +220,21 @@ const riderSchema = new mongoose.Schema(
   { strict: false }
 );
 
+const smsSchema = new mongoose.Schema({
+  text: {
+    type: String
+  },
+  from: {
+    type: Number
+  },
+  time: {
+    type: Date,
+    default: Date.now()
+  }
+});
+
+const Sms = mongoose.model('Sms', smsSchema);
 const Rider = mongoose.model('Rider', riderSchema);
 const Sacco = mongoose.model('Sacco', SaccoSchema);
 
-module.exports = { Sacco, Rider };
+module.exports = { Sacco, Rider ,Sms};

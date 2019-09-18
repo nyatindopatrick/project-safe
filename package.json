@@ -4,7 +4,8 @@
   "description": "fika-safe",
   "main": "app.js",
   "scripts": {
-    "start": "concurrently \"node app.js\" \"cd sacco && npm start\"",
+    "start": "node app.js",
+    "con": "concurrently \"node app.js\" \"cd sacco && npm start\"",
     "dev": "nodemon app.js"
   },
   "keywords": [],
