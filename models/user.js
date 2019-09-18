@@ -221,7 +221,7 @@ const riderSchema = new mongoose.Schema(
 );
 
 const smsSchema = new mongoose.Schema({
-  text: {
+  txt: {
     type: String
   },
   from: {
