@@ -1,8 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const logger = require('morgan');
-var moment = require('moment-timezone');
-moment().tz("Africa/Nairobi").format();
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
