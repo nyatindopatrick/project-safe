@@ -18,7 +18,9 @@
     <div class="card bg-default shadow">
       <div class="card-header bg-transparent border-0">
         <h3 class="text-white mb-0">SMS Logs</h3>
-      </div>
+      </div><span><button style="float:right;margin-top: -55px;margin-right: 30px"
+          onclick="exportTableToCSV('Sms-logs.csv')" type="button" class="btn btn-secondary">Export
+          csv</button></span>
       <div class="table-responsive">
         <table class="table align-items-center table-dark table-flush">
           <thead class="thead-dark">
@@ -32,26 +34,26 @@
           <% log.map(function(result){%>
           <tbody>
             <tr>
-              <th scope="row"> 
+              <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                     
+
                     <span class="mb-0 text-sm"><%=result.from%></span>
                   </div>
                 </div>
               </th>
               <td>
-                  <%=result.txt%>
+                <%=result.txt%>
               </td>
               <td>
                 <span class="badge badge-dot mr-4">
-                    <%=result.time%>
+                  <%=result.time%>
                 </span>
               </td>
             </tr>
           </tbody>
           <%})%>
-        </table> 
+        </table>
       </div>
     </div>
   </div>
