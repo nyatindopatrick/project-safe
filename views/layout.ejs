@@ -168,50 +168,60 @@
   </script>
 
   <script>
-function downloadCSV(csv, filename) {
-    var csvFile;
-    var downloadLink;
+    function downloadCSV(csv, filename) {
+      var csvFile;
+      var downloadLink;
 
-    // CSV file
-    csvFile = new Blob([csv], {type: "text/csv"});
+      // CSV file
+      csvFile = new Blob([csv], { type: "text/csv" });
 
-    // Download link
-    downloadLink = document.createElement("a");
+      // Download link
+      downloadLink = document.createElement("a");
 
-    // File name
-    downloadLink.download = filename;
+      // File name
+      downloadLink.download = filename;
 
-    // Create a link to the file
-    downloadLink.href = window.URL.createObjectURL(csvFile);
+      // Create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
 
-    // Hide download link
-    downloadLink.style.display = "none";
+      // Hide download link
+      downloadLink.style.display = "none";
 
-    // Add the link to DOM
-    document.body.appendChild(downloadLink);
+      // Add the link to DOM
+      document.body.appendChild(downloadLink);
 
-    // Click download link
-    downloadLink.click();
-}
-//creates CSV data from table HTML and download CSV data as a file by using the downloadCSV() function
-function exportTableToCSV(filename) {
-    var csv = [];
-    var rows = document.querySelectorAll("table tr");
-    
-    for (var i = 0; i < rows.length; i++) {
-        var row = [], cols = rows[i].querySelectorAll("td, th");
-        
-        for (var j = 0; j < cols.length; j++) 
-            row.push(cols[j].innerText);
-        
-        csv.push(row.join(","));        
+      // Click download link
+      downloadLink.click();
     }
+    //creates CSV data from table HTML and download CSV data as a file by using the downloadCSV() function
+    function exportTableToCSV(filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("table tr");
 
-    // Download CSV file
-    downloadCSV(csv.join("\n"), filename);
-}
-</script>
+      for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
 
+        for (var j = 0; j < cols.length; j++)
+          row.push(cols[j].innerText);
+
+        csv.push(row.join(","));
+      }
+
+      // Download CSV file
+      downloadCSV(csv.join("\n"), filename);
+    }
+  </script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous">
+    </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+      });
+    });
+  </script>
 
 </body>
 

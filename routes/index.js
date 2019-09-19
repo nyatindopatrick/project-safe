@@ -32,6 +32,8 @@ router.get('/logs', ensureAuthenticated, (req, res) => {
       })
     });
 });
+
+
 // Register Page
 router.get('/register', ensureAuthenticated, (req, res) => res.render('register', {
   user: req.user,
