@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
 require('dotenv').config()
 // Load User model
@@ -92,7 +93,7 @@ router.post("/saccoadmin", (req, res) => {
     name, uniqueSaccoCode, address, postal_code, registration_number,
     telephone_number, membership, date_founded, description, website,
     created, saccoLeaderFname, saccoLeaderLname, saccoLeaderPhoneNumber,
-    status, email, password, password2
+    status, email, password, password2,
   } = req.body;
 
   let errors = [];
@@ -146,60 +147,22 @@ router.post("/saccoadmin", (req, res) => {
           password,
         });
 
-        //Send email(nodemailer)
-        // const transporter = nodemailer.createTransport({
-        //   service: "gmail",
-        //   auth: {
-        //     user: "patrickotieno39@gmail.com",
-        //     pass: process.env.PASS
-        //   }
-        // });
+        //Send email(sendgrid)
 
-        // const mailOptions = {
-        //   from: "patrickotieno39@gmail.com",
-        //   to: email,
-        //   subject: "Fika Safe Credentials",
-        //   html: `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br>`+
-        //   `Email: ${email}<br>Passowrd: ${password}</strong>`
-        // };
-        // transporter.sendMail(mailOptions, function (error, info) {
-        //   if (error) {
-        //     console.log(error);
-        //   } else {
-        //     console.log("Email sent: " + info.response);
-        //   }
-        // });
+        sgMail.setApiKey(process.env.SG_KEY);
+        const msg = {
+          to: [email],
+          from: 'admin@fikasafe.com',
+          subject: 'Your Fika Safe Logins',
+          html: `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br><br>` +
+            `Email: ${email}<br>Passowrd: ${password}</strong>`
+        };
+        sgMail.send(msg);
+        res.status(200);
+        req.flash('success_msg', 'Message sent sucessfully!');
+        res.redirect('/')
+        console.log("success");
 
-        const mailjet = require('node-mailjet')
-          .connect('cb5badee2dc997f90ff86e2fca4435df', '013692bf65660f2ac0afb4cf737f292c')
-        const request = mailjet
-          .post("send", { 'version': 'v3.1' })
-          .request({
-            "Messages": [
-              {
-                "From": {
-                  "Email": "nyatindopatrick@gmail.com",
-                  "Name": "Patrick"
-                },
-                "To": [
-                  {
-                    "Email": email,
-                    "Name": name
-                  }
-                ],
-                "Subject": "Fika Safe Credentials",
-                "HTMLPart": `<strong>Thank you for registering with Fika Safe. Your login credentials are:<br>` +
-                  `Email: ${email}<br>Passowrd: ${password}</strong>`
-              }
-            ]
-          })
-        request
-          .then((result) => {
-            console.log(result.body)
-          })
-          .catch((err) => {
-            console.log(err.statusCode)
-          })
         //Hash password
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {

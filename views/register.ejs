@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form action="/users/saccoadmin" method="POST" enctype="application/x-www-form-urlencoded">
+          <form action="/users/saccoadmin" method="POST">
             <h6 class="heading-small text-muted mb-4">User information</h6>
             <div class="pl-lg-4">
               <div class="row">
@@ -51,10 +51,19 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
+                    <%const uniquecode = function saccoCode(length) {
+                      const d = new Date;
+                      var result = '';
+                      var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                      var charactersLength = characters.length;
+                      for (var i = 0; i < length; i++) {
+                        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                      }
+                      return result + d.getFullYear();
+                    }%>
                     <label class="form-control-label" for="uniqueSaccoCode">Sacco Code</label>
-                    <input readonly type="uniqueSaccoCode" id="uniqueSaccoCode" name="uniqueSaccoCode" class="form-control"
-                      placeholder=""
-                      value="<%= typeof uniqueSaccoCode != 'undefined' ? uniqueSaccoCode : saccoCode %>" />
+                    <input readonly type="uniqueSaccoCode" id="uniqueSaccoCode" name="uniqueSaccoCode"
+                      class="form-control" placeholder="" value="<%=uniquecode(8)%>" />
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -75,11 +84,15 @@
                       value="<%= typeof membership!= 'undefined' ? membership: '' %>" />
                   </div>
                 </div>
+                <%
+                const creatd = function creat(d) {
+                  return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+                }%>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="created">Created</label>
-                    <input readonly type="text" id="created" name="created" class="form-control form-control-alternative"
-                      placeholder="Created" value="<%=creatd%>" />
+                    <input readonly type="text" id="created" name="created"
+                      class="form-control form-control-alternative" placeholder="Created" value="<%=creatd(new Date)%>" />
                   </div>
                 </div>
               </div>
