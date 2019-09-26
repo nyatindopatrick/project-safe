@@ -1,15 +1,14 @@
 <% include ./partials/sacconav %>
-<div
-  class="header pb-6 pt-5 pt-lg-5 d-flex align-items-center"
-  style="min-height: 50px; background-image: url(/assets/img/brand/fikasback.png); background-size: cover; background-position: center top;"
->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 200px; background-image: url(/assets/img/brand/fikasback.png); background-size: cover; background-position: center top;">
   <!-- Mask -->
   <span class="mask bg-gradient-default opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid align-items-center">
     <div class="row">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-3 text-white">SMS Logs</h1>
+        <h1 class="display-3 text-white"><%=user.riderFname + " " + user.riderSurName%></h1>
+
       </div>
     </div>
   </div>
@@ -19,17 +18,8 @@
     <div class="card bg-default shadow">
       <div class="card-header bg-transparent border-0">
         <h3 class="text-white mb-0">SMS Logs</h3>
-      </div>
-      <span
-        ><button
-          style="float:right;margin-top: -50px;margin-right: 30px"
-          onclick="exportTableToCSV('Sms-logs.csv')"
-          type="button"
-          class="btn btn-secondary"
-        >
-          Export csv
-        </button></span
-      >
+      </div><span><button style="float:right;margin-top: -50px;margin-right: 30px" onclick="exportTableToCSV('Sms-logs.csv')" type="button" class="btn btn-secondary">Export
+        csv</button></span>
       <div class="table-responsive">
         <table class="table align-items-center table-dark table-flush">
           <thead class="thead-dark">
@@ -43,25 +33,26 @@
           <% log.map(function(result){%>
           <tbody>
             <tr>
-              <th scope="row">
+              <th scope="row"> 
                 <div class="media align-items-center">
                   <div class="media-body">
+                     
                     <span class="mb-0 text-sm"><%=result.from%></span>
                   </div>
                 </div>
               </th>
               <td>
-                <%=result.txt%>
+                  <%=result.txt%>
               </td>
               <td>
                 <span class="badge badge-dot mr-4">
-                  <%=result.time%>
+                    <%=result.time%>
                 </span>
               </td>
             </tr>
           </tbody>
           <%})%>
-        </table>
+        </table> 
       </div>
     </div>
   </div>

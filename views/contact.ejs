@@ -1,0 +1,101 @@
+<link href="/home.css" rel="stylesheet" />
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+  rel="stylesheet"
+/>
+<%include ./partials/sacconav%>
+<div class="container">
+  <div class="section-title text-center">
+    <h2>Contact</h2>
+    <p class="separator">
+      Please enter your message or question in the form below
+    </p>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-3 col-md-4">
+      <div class="info">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p>Huduma Center<br />Ground Floor</p>
+        </div>
+
+        <div class="email">
+          <i class="fa fa-envelope"></i>
+          <p>support@fikasafe.com</p>
+        </div>
+
+        <div>
+          <i class="fa fa-phone"></i>
+          <p>0204563545</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5 col-md-8">
+      <div class="form">
+        <div id="errormessage"></div>
+        <form action="/contact" method="POST" onsubmit="" class="contactForm">
+          <div class="form-group">
+            <input
+              required
+              type="text"
+              name="name"
+              class="form-control"
+              id="name"
+              placeholder="Your Name"
+              data-rule="minlen:4"
+              data-msg="Please enter at least 4 chars"
+              value=""
+            />
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <input
+              required
+              type="email"
+              class="form-control"
+              name="email"
+              id="email"
+              placeholder="Your Email"
+              data-rule="email"
+              data-msg="Please enter a valid email"
+              value=""
+            />
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <input
+              required
+              type="text"
+              class="form-control"
+              name="subject"
+              id="subject"
+              placeholder="Subject"
+              data-rule="minlen:4"
+              data-msg="Please enter at least 8 chars of subject"
+              value=""
+            />
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              name="message"
+              rows="5"
+              data-rule="required"
+              data-msg="Please write something for us"
+              placeholder="Message"
+            ></textarea>
+            <div class="validation"></div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%include ./partials/footer%>

@@ -1,15 +1,21 @@
+var url = require('url');
 module.exports = {
-  ensureAuthenticated: function (req, res, next) {
-    if (req.isAuthenticated()) {
+  ensureAuthenticated: (req, res, next) =>{
+  
+    if (req.isAuthenticated() ) {
       return next();
     }
-    req.flash('error_msg', 'Please log in to view that resource');
-    res.redirect('/users/login');
+    req.flash("error_msg", "Please log in to view that resource");
+    res.redirect("/");
   },
-  forwardAuthenticated: function (req, res, next) {
+  forwardAuthenticated: function(req, res, next) {
     if (!req.isAuthenticated()) {
       return next();
-    }
-    res.redirect('/dashboard');
+    }  
+    // if(!userType){
+    //   res.redirect(req.originalUrl)
+    // }
+      // res.status(200).redirect("back");
+
   }
 };

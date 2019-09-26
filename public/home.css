@@ -1305,7 +1305,7 @@ body.mobile-nav-active #mobile-nav-toggle i {
 # Footer
 --------------------------------------------------------------*/
 .footer {
-  background: #4eaf66;
+  background: #07063a;
   padding-top: 50px;
 }
 
@@ -1360,4 +1360,9 @@ body.mobile-nav-active #mobile-nav-toggle i {
 .footer .copyrights p a, .footer .copyrights .credits a {
   letter-spacing: 0;
   color: #71c55d;
+}
+.cfooter {
+  margin-bottom: 0px;
+  background: #4eaf66;
+  padding-top: 50px;
 }

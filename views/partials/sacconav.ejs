@@ -1,44 +1,51 @@
 <div class="wrapper">
   <nav id="sidebar" class=" active">
     <div class="sidebar-header">
-      <h3>
-        <img
-          src="/assets/img/brand/fikas.png"
-          class="navbar-brand-img"
-          alt="..."
-        />
-      </h3>
-      <strong>FS </strong>
+      <a href="/sacco/dashboard"
+        ><h3>
+          <img
+            src="/assets/img/brand/fikas.png"
+            class="navbar-brand-img"
+            alt="..."
+          /></h3
+      ></a>
+      <a href="/sacco/dashboard"><strong>FS</strong></a>
     </div>
 
     <ul id="nav" class="list-unstyled components">
-      <li class="lst">
-        <a href="/admin/dashboard">
+      <li>
+        <a href="/sacco/dashboard">
           <i class="fas fa-desktop"></i>
           Home
         </a>
       </li>
       <li>
-        <a href="/admin/logs">
+        <a href="/sacco/logs">
           <i class="fas fa-briefcase"></i>
           Logs
         </a>
       </li>
+      <li>
+        <a href="/sacco/contact">
+          <i class="fas fa-paper-plane"></i>
+          Contact
+        </a>
+      </li>
     </ul>
   </nav>
-  <span style="margin-top:30px;">
-    <h1>
-      <i
-        id="sidebarCollapse"
-        style="width:15px;"
-        class="fas toggle fa-caret-square-right"
-      ></i></h1
-  ></span>
 
   <!-- Page Content  -->
   <div id="content">
     <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-default">
       <div class="container-fluid">
+        <button
+          type="button"
+          id="sidebarCollapse"
+          style="background-color: #000;border-color: #000;"
+          class="btn btn-info"
+        >
+          <i style="width:10px;" class="fas fa-chevron-right"></i>
+        </button>
         <button
           class="btn btn-light d-inline-block d-lg-none ml-auto"
           type="button"
@@ -68,7 +75,9 @@
                     <i class="ni ni-single-02"></i>
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Profile</span>
+                    <span class="mb-0 text-sm  font-weight-bold"
+                      ><%=user.name%></span
+                    >
                   </div>
                 </div>
               </a>
@@ -78,12 +87,12 @@
                 <div class=" dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="/myprofile" class="dropdown-item">
+                <a href="/sacco/myprofile" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>My profile</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="/admin/logout" class="dropdown-item">
+                <a href="/sacco/logout" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>

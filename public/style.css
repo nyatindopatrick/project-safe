@@ -231,7 +231,7 @@ span {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
-  background: rgb(121, 117, 117);
+  background: #07063a;
 }
 
 a[data-toggle="collapse"] {
