@@ -15,6 +15,9 @@ A boda boda (motorbike) taxi safety app for registering the boda boda operators 
 - Sendgrid
 - Express
 
+# live Link
+http://fikasafe.herokuapp.com
+
 # Get Started
 
 - You first need to clone the repository
@@ -30,6 +33,7 @@ A boda boda (motorbike) taxi safety app for registering the boda boda operators 
 - Twitter: [@nyatindopatrick](https://twitter.com/nyatindopatrick)
 - Linkedln: [Patrick Nyatindo](https://www.linkedin.com/in/nyatindopatrick)
 
+👤 Cyrus Kiprop
 - Github: [Cyrus-Kiprop](https://github.com/Cyrus-Kiprop)
 - Twitter: [@kipropjs](https://twitter.com)
 - Linkedln: [Cyrus Kiprop](https://www.linkedin.com/in/)
