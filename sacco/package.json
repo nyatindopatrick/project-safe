@@ -24,7 +24,7 @@
     "express-session": "^1.15.6",
     "method-override": "^3.0.0",
     "mongodb": "^3.3.1",
-    "mongoose": "^5.6.11",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "node-mailjet": "^3.3.1",
     "nodemailer": "^6.3.0",
